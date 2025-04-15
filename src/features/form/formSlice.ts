@@ -11,7 +11,8 @@ const initialState: FormState = {
   },
   additionalInfo: {
     address: "",
-    wantsNewsletter: false,
+    companyName: "",
+    preferredTopics: "",
   },
   isComplete: false,
 };

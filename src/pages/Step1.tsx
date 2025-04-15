@@ -1,9 +1,10 @@
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setBasicInfo, setStep } from '../features/form/formSlice';
+import { RootState } from '../store/store';
 
 const schema = z.object({
     name: z.string().min(1, 'Name is required'),
@@ -18,6 +19,7 @@ type FormData = z.infer<typeof schema>;
 const BasicInfoStep = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const storedValues = useSelector((state: RootState) => state.form.basicInfo);
 
     const {
         register,
@@ -26,6 +28,11 @@ const BasicInfoStep = () => {
     } = useForm<FormData>({
         mode: 'onChange',
         resolver: zodResolver(schema),
+        defaultValues: {
+            name: storedValues.name,
+            email: storedValues.email,
+            accountType: storedValues.accountType,
+        },
     });
 
     const onSubmit = (data: FormData) => {

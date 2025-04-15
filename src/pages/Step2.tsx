@@ -8,7 +8,6 @@ import { RootState } from '../store/store';
 
 const schema = z.object({
     address: z.string().min(1, 'Address is required'),
-    wantsNewsletter: z.boolean().optional(),
     preferredTopics: z.string().min(1),
     companyName: z
         .string()
@@ -30,6 +29,7 @@ const AdditionalInfoStep = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const storedValues = useSelector((state: RootState) => state.form.additionalInfo);
     const accountType = useSelector((state: RootState) => state.form.basicInfo.accountType);
     const isCompany = accountType === 'Company';
 
@@ -40,6 +40,12 @@ const AdditionalInfoStep = () => {
     } = useForm<FormData>({
         mode: 'all',
         resolver: zodResolver(schema),
+        defaultValues: {
+            address: storedValues.address,
+            preferredTopics: storedValues.preferredTopics,
+            companyName: storedValues.companyName,
+          },
+        
     });
 
 
