@@ -1,5 +1,6 @@
 import Button from '@/components/Button';
 import StepTitle from '@/components/StepTitle';
+import SuccessCard from '@/components/SuccessCard';
 import { resetForm } from '@/features/form/formSlice';
 import { RootState } from '@/store/store';
 import { clearFormStorage } from '@/utils/storage';
@@ -32,12 +33,7 @@ const ConfirmationStep = () => {
 
     return (
         <div>
-            {isSubmitted ? (
-                <div className="text-green-600 font-semibold">
-                    <h3 className="text-xl">Success!</h3>
-                    <p>Your information has been submitted successfully.</p>
-                </div>
-            ) : (
+            {isSubmitted ? (<SuccessCard />) : (
                 <>
                     <StepTitle title='Review and Confirm' />
 
