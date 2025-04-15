@@ -1,5 +1,8 @@
 ## 🛠 Installation & Running the App
 
+### Live Demo
+[https://multi-step-app-delta.vercel.app/step1](https://multi-step-app-delta.vercel.app/step1)
+
 ### Prerequisites
 Make sure you have the following installed:
 - Node.js (v22 or later)
