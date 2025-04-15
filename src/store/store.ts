@@ -1,6 +1,7 @@
-import { configureStore } from '@reduxjs/toolkit';
-import formReducer from '../features/form/formSlice';
-import { loadFormFromStorage, saveFormToStorage } from '../utils/storage';
+import { configureStore } from "@reduxjs/toolkit";
+import formReducer from "../features/form/formSlice";
+import themeReducer from "../features/theme/themeSlice";
+import { loadFormFromStorage, saveFormToStorage } from "../utils/storage";
 
 const preloadedState = {
   form: loadFormFromStorage(),
@@ -9,6 +10,7 @@ const preloadedState = {
 export const store = configureStore({
   reducer: {
     form: formReducer,
+    theme: themeReducer,
   },
   preloadedState,
 });
