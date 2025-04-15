@@ -11,16 +11,27 @@ const App = () => {
 
   // Apply theme class to the body
   React.useEffect(() => {
-    document.body.className = theme;  // 'light' or 'dark'
+    document.documentElement.classList.toggle(
+      "dark",
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
+    );
   }, [theme]);
 
   return (
     <Router>
-      <div className="max-w-xl mx-auto bg-white shadow-md p-6 rounded-xl">
-        <ThemeToggle />
-        <ProgressBar />
-        <AppRoutes />
-      </div>
+      <section className='w-full max-w-xl mx-auto'>
+        <header>
+          <ThemeToggle />
+        </header>
+        <main>
+          <div className=" bg-white dark:bg-gray-800 shadow-md p-6 rounded-xl flex flex-col gap-6">
+            <ProgressBar />
+            <AppRoutes />
+          </div>
+        </main>
+      </section>
+
     </Router>
   );
 };
