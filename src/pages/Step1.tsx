@@ -1,6 +1,7 @@
 import Button from '@/components/Button';
 import Input from '@/components/Input';
 import RadioGroup from '@/components/RadioButton';
+import StepTitle from '@/components/StepTitle';
 import { setBasicInfo, setStep } from '@/features/form/formSlice';
 import { RootState } from '@/store/store';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -45,9 +46,10 @@ const BasicInfoStep = () => {
     };
 
     return (
-        <div>
-            <h2 className="text-2xl font-semibold text-center border-b border-solid border-gray-400/40 pb-3 mb-10">Basic Info</h2>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <>
+            <StepTitle title='Basic Info' />
+
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
                 <Input
                     name='name'
                     label="Name"
@@ -82,7 +84,7 @@ const BasicInfoStep = () => {
                     variant='primary'
                 />
             </form>
-        </div>
+        </>
     );
 };
 

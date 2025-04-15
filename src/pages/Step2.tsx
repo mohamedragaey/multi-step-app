@@ -1,5 +1,6 @@
 import Button from '@/components/Button';
 import Input from '@/components/Input';
+import StepTitle from '@/components/StepTitle';
 import { setAdditionalInfo, setStep } from '@/features/form/formSlice';
 import { AdditionalInfo, RequiredAdditionalInfo } from '@/features/form/types';
 import { RootState } from '@/store/store';
@@ -12,7 +13,7 @@ import { z } from 'zod';
 const createDynamicSchema = (isKeyRequired: boolean) => {
     const baseSchema = z.object({
         address: z.string().min(1, 'Address is required'),
-        preferredTopics: z.string().min(1),
+        preferredTopics: z.string().min(1, 'preferred Topics are required'),
     });
 
     return isKeyRequired
@@ -64,9 +65,10 @@ const AdditionalInfoStep = () => {
     };
 
     return (
-        <div>
-            <h2 className="text-2xl font-semibold mb-4">Step 2: Additional Info</h2>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <>
+            <StepTitle title='Additional Info' />
+
+            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
                 <Input
                     name='address'
                     label="Address"
@@ -82,6 +84,7 @@ const AdditionalInfoStep = () => {
                     type="text"
                     register={register}
                     error={errors?.preferredTopics?.message}
+                    hint='You can add multiple topics by use comma seprated ex: art, sport, ..etc'
                 />
 
                 {isCompany && (
@@ -111,7 +114,7 @@ const AdditionalInfoStep = () => {
                     />
                 </div>
             </form>
-        </div>
+        </>
     );
 };
 

@@ -1,4 +1,5 @@
 import Button from '@/components/Button';
+import StepTitle from '@/components/StepTitle';
 import { resetForm } from '@/features/form/formSlice';
 import { RootState } from '@/store/store';
 import { clearFormStorage } from '@/utils/storage';
@@ -38,24 +39,27 @@ const ConfirmationStep = () => {
                 </div>
             ) : (
                 <>
-                    <h2 className="text-2xl font-semibold mb-4">Step 3: Review and Confirm</h2>
-                    <div className="space-y-4">
+                    <StepTitle title='Review and Confirm' />
+
+                    <div className="flex flex-col gap-6 mb-6">
                         <div>
-                            <h3 className="font-medium">Basic Information</h3>
-                            <p>Name: {basicInfo.name}</p>
-                            <p>Email: {basicInfo.email}</p>
-                            <p>Account Type: {basicInfo.accountType}</p>
+                            <h3 className="font-semibold mb-2">Basic Information</h3>
+                            <div className='pl-6 flex flex-col gap-1'>
+                                <p><span className='font-medium'>Name:</span> {basicInfo.name}</p>
+                                <p><span className='font-medium'>Email:</span> {basicInfo.email}</p>
+                                <p><span className='font-medium'>Account Type:</span> {basicInfo.accountType}</p>
+                            </div>
                         </div>
 
                         <div>
-                            <h3 className="font-medium">Additional Information</h3>
-                            <p>Address: {additionalInfo.address}</p>
-
-                            <p>Preferred Topics: {additionalInfo.preferredTopics}</p>
-
-                            {basicInfo.accountType === 'Company' && (
-                                <p>Company Name: {additionalInfo.companyName}</p>
-                            )}
+                            <h3 className="font-semibold mb-2">Additional Information</h3>
+                            <div className='pl-6 flex flex-col gap-1'>
+                                <p><span className='font-medium'>Address:</span> {additionalInfo.address}</p>
+                                <p><span className='font-medium'>Preferred Topics:</span> {additionalInfo.preferredTopics}</p>
+                                {basicInfo.accountType === 'Company' && (
+                                    <p><span className='font-medium'>Company Name:</span> {additionalInfo.companyName}</p>
+                                )}
+                            </div>
                         </div>
                     </div>
 
