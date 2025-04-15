@@ -41,10 +41,10 @@ const ConfirmationStep = () => {
                 <>
                     <StepTitle title='Review and Confirm' />
 
-                    <div className="flex flex-col gap-6 mb-6">
+                    <div className="flex flex-col gap-6 mb-6 dark:text-white break-words">
                         <div>
                             <h3 className="font-semibold mb-2">Basic Information</h3>
-                            <div className='pl-6 flex flex-col gap-1'>
+                            <div className='sm:pl-6 flex flex-col gap-1'>
                                 <p><span className='font-medium'>Name:</span> {basicInfo.name}</p>
                                 <p><span className='font-medium'>Email:</span> {basicInfo.email}</p>
                                 <p><span className='font-medium'>Account Type:</span> {basicInfo.accountType}</p>
@@ -53,7 +53,7 @@ const ConfirmationStep = () => {
 
                         <div>
                             <h3 className="font-semibold mb-2">Additional Information</h3>
-                            <div className='pl-6 flex flex-col gap-1'>
+                            <div className='sm:pl-6 flex flex-col gap-1'>
                                 <p><span className='font-medium'>Address:</span> {additionalInfo.address}</p>
                                 <p><span className='font-medium'>Preferred Topics:</span> {additionalInfo.preferredTopics}</p>
                                 {basicInfo.accountType === 'Company' && (
@@ -63,7 +63,7 @@ const ConfirmationStep = () => {
                         </div>
                     </div>
 
-                    <div className="flex justify-between pt-4">
+                    <div className="flex flex-col sm:flex-row justify-between gap-4 pt-4">
                         <Button
                             label='Back'
                             type='button'

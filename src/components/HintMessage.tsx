@@ -5,7 +5,7 @@ interface HintMessageProps {
 const HintMessage: React.FC<HintMessageProps> = (props) => {
 
     return (
-        <span className="text-xs italic text-gray-600 block">{props.message}</span>
+        <span className="text-xs italic text-gray-600 dark:text-gray-400 block">{props.message}</span>
     );
 };
 

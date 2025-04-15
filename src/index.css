@@ -2,6 +2,9 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+  --color-shark-100: #22272b;
+  --color-shark-200: #1d2125;
+  --color-shark-300: #161a1d;
   --font-montserrat: "Montserrat", sans-serif;
 }
 
@@ -15,20 +18,8 @@
 html,
 body,
 #root {
-  @apply flex flex-col h-full font-montserrat;
+  @apply flex flex-col h-full font-montserrat dark:bg-shark-300;
 }
 #root {
   @apply items-center justify-center;
-}
-
-/* Light Theme (default) */
-body.light {
-  background-color: white;
-  color: black;
-}
-
-/* Dark Theme */
-body.dark {
-  background-color: #1a202c;
-  color: white;
 }

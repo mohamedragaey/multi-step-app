@@ -99,7 +99,7 @@ const AdditionalInfoStep = () => {
                 )}
 
 
-                <div className="flex justify-between pt-4">
+                <div className="flex flex-col sm:flex-row justify-between gap-4 pt-4">
                     <Button
                         label='Back'
                         type='button'

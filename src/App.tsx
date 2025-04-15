@@ -20,13 +20,13 @@ const App = () => {
 
   return (
     <Router>
-      <section className='w-full max-w-xl mx-auto'>
+      <section className='w-full max-w-xl mx-auto p-4'>
         <header>
           <ThemeToggle />
         </header>
         <main>
-          <div className=" bg-white dark:bg-gray-800 shadow-md p-6 rounded-xl flex flex-col gap-6">
-            <ProgressBar />
+          <ProgressBar />
+          <div className=" bg-white dark:bg-shark-100 shadow-md p-6 rounded-xl flex flex-col gap-6">
             <AppRoutes />
           </div>
         </main>
