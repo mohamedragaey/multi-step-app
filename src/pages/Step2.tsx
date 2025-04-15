@@ -5,25 +5,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setAdditionalInfo, setStep } from '../features/form/formSlice';
 import { RootState } from '../store/store';
+import { AdditionalInfo, RequiredAdditionalInfo } from '../features/form/types';
 
-const schema = z.object({
-    address: z.string().min(1, 'Address is required'),
-    preferredTopics: z.string().min(1),
-    companyName: z
-        .string()
-        .optional()
-        .refine((val, ctx) => {
-            const isCompany = ctx?.parent?.accountType === 'Company';
-            if (isCompany && (!val || val.trim() === '')) {
-                return false;
-            }
-            return true;
-        }, {
-            message: 'Company Name is required for company accounts',
-        }),
-});
+const createDynamicSchema = (isKeyRequired: boolean) => {
+    const baseSchema = z.object({
+        address: z.string().min(1, 'Address is required'),
+        preferredTopics: z.string().min(1),
+    });
 
-type FormData = z.infer<typeof schema>;
+    return isKeyRequired
+        ? baseSchema.extend({
+            companyName: z.string().min(1, 'Company name required'),
+        })
+        : baseSchema.extend({
+            companyName: z.string().optional()
+        });
+};
+
+// Union type for FormData
+type FormData = AdditionalInfo | RequiredAdditionalInfo;
 
 const AdditionalInfoStep = () => {
     const dispatch = useDispatch();
@@ -32,6 +32,8 @@ const AdditionalInfoStep = () => {
     const storedValues = useSelector((state: RootState) => state.form.additionalInfo);
     const accountType = useSelector((state: RootState) => state.form.basicInfo.accountType);
     const isCompany = accountType === 'Company';
+
+    const schema = createDynamicSchema(isCompany);
 
     const {
         register,
@@ -44,8 +46,7 @@ const AdditionalInfoStep = () => {
             address: storedValues.address,
             preferredTopics: storedValues.preferredTopics,
             companyName: storedValues.companyName,
-          },
-        
+        },
     });
 
 

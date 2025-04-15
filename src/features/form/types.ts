@@ -6,8 +6,11 @@ export interface BasicInfo {
 
 export interface AdditionalInfo {
   address: string;
-  companyName: string;
+  companyName?: string;
   preferredTopics: string;
+}
+export interface RequiredAdditionalInfo extends AdditionalInfo {
+  companyName: string;
 }
 
 export interface FormState {
