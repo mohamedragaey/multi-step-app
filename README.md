@@ -1,7 +1,7 @@
 ## 🛠 Installation & Running the App
 
 ### Live Demo
-[https://multi-step-app-delta.vercel.app/step1](https://multi-step-app-delta.vercel.app/step1)
+[https://multi-step-app-delta.vercel.app/](https://multi-step-app-delta.vercel.app/)
 
 ### Prerequisites
 Make sure you have the following installed:
