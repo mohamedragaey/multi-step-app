@@ -2,6 +2,7 @@
 export interface BasicInfo {
     name: string;
     email: string;
+    accountType: 'Individual' | 'Company';
   }
   
   export interface AdditionalInfo {

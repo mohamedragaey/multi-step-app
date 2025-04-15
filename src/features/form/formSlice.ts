@@ -7,6 +7,7 @@ const initialState: FormState = {
   basicInfo: {
     name: "",
     email: "",
+    accountType: "Individual",
   },
   additionalInfo: {
     address: "",

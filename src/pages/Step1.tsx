@@ -8,6 +8,9 @@ import { setBasicInfo, setStep } from '../features/form/formSlice';
 const schema = z.object({
     name: z.string().min(1, 'Name is required'),
     email: z.string().email('Invalid email address'),
+    accountType: z.enum(['Individual', 'Company'], {
+        required_error: 'Please select an account type',
+    }),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -55,6 +58,33 @@ const BasicInfoStep = () => {
                         className="w-full mt-1 p-2 border rounded"
                     />
                     {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+                </div>
+
+                <div>
+                    <label className="block text-sm font-medium">Account Type</label>
+                    <div className="flex gap-4 mt-1">
+                        <label htmlFor='Individual' className="flex items-center gap-1">
+                            <input
+                                id='Individual'
+                                type="radio"
+                                value="Individual"
+                                {...register('accountType')}
+                            />
+                            Individual
+                        </label>
+                        <label htmlFor='Company' className="flex items-center gap-1">
+                            <input
+                                id='Company'
+                                type="radio"
+                                value="Company"
+                                {...register('accountType')}
+                            />
+                            Company
+                        </label>
+                    </div>
+                    {errors.accountType && (
+                        <p className="text-red-500 text-sm">{errors.accountType.message}</p>
+                    )}
                 </div>
 
                 <button
