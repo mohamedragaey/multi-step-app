@@ -1,3 +1,6 @@
+import Button from '@/components/Button';
+import Input from '@/components/Input';
+import RadioGroup from '@/components/RadioButton';
 import { setBasicInfo, setStep } from '@/features/form/formSlice';
 import { RootState } from '@/store/store';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -43,64 +46,41 @@ const BasicInfoStep = () => {
 
     return (
         <div>
-            <h2 className="text-2xl font-semibold mb-4">Step 1: Basic Info</h2>
+            <h2 className="text-2xl font-semibold text-center border-b border-solid border-gray-400/40 pb-3 mb-10">Basic Info</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                <div>
-                    <label htmlFor='name' className="block text-sm font-medium">Name</label>
-                    <input
-                        id='name'
-                        type="text"
-                        {...register('name')}
-                        className="w-full mt-1 p-2 border rounded"
-                    />
-                    {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
-                </div>
+                <Input
+                    name='name'
+                    label="Name"
+                    id="name"
+                    type="text"
+                    register={register}
+                    error={errors?.name?.message}
+                />
+                <Input
+                    name='email'
+                    label="Email"
+                    id="email"
+                    type="email"
+                    register={register}
+                    error={errors?.email?.message}
+                />
+                <RadioGroup
+                    name="accountType"
+                    label="Account Type"
+                    options={[
+                        { label: "Individual", value: "Individual" },
+                        { label: "Company", value: "Company" },
+                    ]}
+                    register={register}
+                    error={errors.accountType?.message}
+                />
 
-                <div>
-                    <label htmlFor='email' className="block text-sm font-medium">Email</label>
-                    <input
-                        id='email'
-                        type="email"
-                        {...register('email')}
-                        className="w-full mt-1 p-2 border rounded"
-                    />
-                    {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
-                </div>
-
-                <div>
-                    <label className="block text-sm font-medium">Account Type</label>
-                    <div className="flex gap-4 mt-1">
-                        <label htmlFor='Individual' className="flex items-center gap-1">
-                            <input
-                                id='Individual'
-                                type="radio"
-                                value="Individual"
-                                {...register('accountType')}
-                            />
-                            Individual
-                        </label>
-                        <label htmlFor='Company' className="flex items-center gap-1">
-                            <input
-                                id='Company'
-                                type="radio"
-                                value="Company"
-                                {...register('accountType')}
-                            />
-                            Company
-                        </label>
-                    </div>
-                    {errors.accountType && (
-                        <p className="text-red-500 text-sm">{errors.accountType.message}</p>
-                    )}
-                </div>
-
-                <button
-                    type="submit"
-                    className="bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50"
+                <Button
+                    label='Next'
+                    type='submit'
                     disabled={!isValid}
-                >
-                    Next
-                </button>
+                    variant='primary'
+                />
             </form>
         </div>
     );

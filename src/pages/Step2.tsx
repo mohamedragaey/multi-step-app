@@ -1,3 +1,5 @@
+import Button from '@/components/Button';
+import Input from '@/components/Input';
 import { setAdditionalInfo, setStep } from '@/features/form/formSlice';
 import { AdditionalInfo, RequiredAdditionalInfo } from '@/features/form/types';
 import { RootState } from '@/store/store';
@@ -65,63 +67,48 @@ const AdditionalInfoStep = () => {
         <div>
             <h2 className="text-2xl font-semibold mb-4">Step 2: Additional Info</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                <div>
-                    <label htmlFor='address' className="block text-sm font-medium">Address</label>
-                    <input
-                        id='address'
-                        type="text"
-                        {...register('address')}
-                        className="w-full mt-1 p-2 border rounded"
-                    />
-                    {errors.address && (
-                        <p className="text-red-500 text-sm">{errors.address.message}</p>
-                    )}
-                </div>
-
-                <div>
-                    <label htmlFor='preferredTopics' className="block text-sm font-medium">Preferred Topics</label>
-                    <input
-                        id='preferredTopics'
-                        type="text"
-                        {...register('preferredTopics')}
-                        className="w-full mt-1 p-2 border rounded"
-                    />
-                    {errors.preferredTopics && (
-                        <p className="text-red-500 text-sm">{errors.preferredTopics.message}</p>
-                    )}
-                </div>
+                <Input
+                    name='address'
+                    label="Address"
+                    id="address"
+                    type="text"
+                    register={register}
+                    error={errors?.address?.message}
+                />
+                <Input
+                    name='preferredTopics'
+                    label="Preferred Topics"
+                    id="preferredTopics"
+                    type="text"
+                    register={register}
+                    error={errors?.preferredTopics?.message}
+                />
 
                 {isCompany && (
-                    <div>
-                        <label htmlFor='CompanyName' className="block text-sm font-medium">Company Name</label>
-                        <input
-                            id='CompanyName'
-                            type="text"
-                            {...register('companyName')}
-                            className="w-full mt-1 p-2 border rounded"
-                        />
-                        {errors.companyName && (
-                            <p className="text-red-500 text-sm">{errors?.companyName?.message}</p>
-                        )}
-                    </div>
+                    <Input
+                        name='companyName'
+                        label="Company Name"
+                        id="companyName"
+                        type="text"
+                        register={register}
+                        error={errors?.companyName?.message}
+                    />
                 )}
 
 
                 <div className="flex justify-between pt-4">
-                    <button
-                        type="button"
+                    <Button
+                        label='Back'
+                        type='button'
+                        variant='secondary'
                         onClick={handleBack}
-                        className="bg-gray-300 text-gray-800 px-4 py-2 rounded"
-                    >
-                        Back
-                    </button>
-                    <button
-                        type="submit"
-                        className="bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50"
+                    />
+                    <Button
+                        label='Next'
+                        type='submit'
                         disabled={!isValid}
-                    >
-                        Next
-                    </button>
+                        variant='primary'
+                    />
                 </div>
             </form>
         </div>

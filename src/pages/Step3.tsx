@@ -1,3 +1,4 @@
+import Button from '@/components/Button';
 import { resetForm } from '@/features/form/formSlice';
 import { RootState } from '@/store/store';
 import { clearFormStorage } from '@/utils/storage';
@@ -59,18 +60,18 @@ const ConfirmationStep = () => {
                     </div>
 
                     <div className="flex justify-between pt-4">
-                        <button
+                        <Button
+                            label='Back'
+                            type='button'
+                            variant='secondary'
                             onClick={handleBack}
-                            className="bg-gray-300 text-gray-800 px-4 py-2 rounded"
-                        >
-                            Back
-                        </button>
-                        <button
+                        />
+                        <Button
+                            label='Submit'
+                            type='submit'
+                            variant='success'
                             onClick={handleSubmit}
-                            className="bg-green-600 text-white px-4 py-2 rounded"
-                        >
-                            Submit
-                        </button>
+                        />
                     </div>
                 </>
             )}
