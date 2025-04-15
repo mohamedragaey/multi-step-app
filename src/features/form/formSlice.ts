@@ -1,6 +1,5 @@
-// src/features/form/formSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FormState, BasicInfo, AdditionalInfo } from "./types";
+import { AdditionalInfo, BasicInfo, FormState } from "./types";
 
 const initialState: FormState = {
   step: 1,

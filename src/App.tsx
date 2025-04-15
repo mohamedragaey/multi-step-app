@@ -1,10 +1,10 @@
-import { BrowserRouter as Router } from 'react-router-dom';
-import AppRoutes from './routes/AppRoutes';
-import ProgressBar from './components/ProgressBar';
-import ThemeToggle from './components/ThemeToggle';
+import ProgressBar from '@/components/ProgressBar';
+import ThemeToggle from '@/components/ThemeToggle';
+import AppRoutes from '@/routes/AppRoutes';
+import { RootState } from '@/store/store';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from './store/store';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const App = () => {
   const theme = useSelector((state: RootState) => state.theme.mode);

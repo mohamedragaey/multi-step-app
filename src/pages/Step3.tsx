@@ -1,8 +1,8 @@
+import { resetForm } from '@/features/form/formSlice';
+import { RootState } from '@/store/store';
+import { clearFormStorage } from '@/utils/storage';
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../store/store';
-import { resetForm } from '../features/form/formSlice';
-import { clearFormStorage } from '../utils/storage';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const ConfirmationStep = () => {

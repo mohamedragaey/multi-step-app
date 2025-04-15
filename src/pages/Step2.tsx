@@ -1,11 +1,11 @@
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
+import { setAdditionalInfo, setStep } from '@/features/form/formSlice';
+import { AdditionalInfo, RequiredAdditionalInfo } from '@/features/form/types';
+import { RootState } from '@/store/store';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setAdditionalInfo, setStep } from '../features/form/formSlice';
-import { RootState } from '../store/store';
-import { AdditionalInfo, RequiredAdditionalInfo } from '../features/form/types';
+import { z } from 'zod';
 
 const createDynamicSchema = (isKeyRequired: boolean) => {
     const baseSchema = z.object({

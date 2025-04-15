@@ -1,9 +1,9 @@
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import BasicInfoStep from '../pages/Step1';
-import AdditionalInfoStep from '../pages/Step2';
-import ConfirmationStep from '../pages/Step3';
+import BasicInfoStep from '@/pages/Step1';
+import AdditionalInfoStep from '@/pages/Step2';
+import ConfirmationStep from '@/pages/Step3';
+import { RootState } from '@/store/store';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store/store';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 const AppRoutes = () => {
     const formState = useSelector((state: RootState) => state.form);
